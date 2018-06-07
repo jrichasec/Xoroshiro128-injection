@@ -1,17 +1,14 @@
 #!/usr/bin/python
 # Xoroshiro128+ - reversing the PRNG - jack richardson 2018
-
-from z3 import *
 import z3
 import sys
 
-
-class xoro_inject: 
+class xoro_inject:
 	bitmask = 0xffffffffffffffff
 
 	def __init__(self):
 		pass
-	
+
 	def little_endian(self, injected_txt):
 		assert len(injected_txt) == 16
 		hexchr = [ord(c) for c in injected_txt]
@@ -20,10 +17,10 @@ class xoro_inject:
 			x = x + (hexchr[i] << (64 - 8 * (7 - i)))
 			y = y + (hexchr[i + 8] << (64 - 8 * (7 - i)))
 		return x,y
-		
+
 	def rotate_left(self, x, shift):
 		return ((x << shift) | LShR(x, 64 - shift))  & self.bitmask
-		
+
 	def solve(self, string):
 		chunk1, chunk2 = self.little_endian(mystr);
 		print hex(chunk1)
@@ -39,7 +36,7 @@ class xoro_inject:
 			print("Seed 1: %s\nSeed 2: %s"%(hex(m[a].as_long()).upper(), hex(m[b].as_long()).upper()))
 		except:
 			print ("Had to backout, invalid string :(")
-		
+
 
 
 if __name__== "__main__":
