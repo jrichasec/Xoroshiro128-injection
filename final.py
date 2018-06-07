@@ -37,8 +37,6 @@ class xoro_inject:
 		except:
 			print ("Had to backout, invalid string :(")
 
-
-
 if __name__== "__main__":
 	if(len(sys.argv) <2):
 		print("please provide a string arg)")
@@ -52,5 +50,3 @@ if __name__== "__main__":
 else:
 	print("No loading..");
 	sys.exit(-1)
-
-
